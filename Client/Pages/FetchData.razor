@@ -15,9 +15,14 @@
 else
 {
 
-    <button class="btn btn-primary" @onclick="UpdateWeather">
-        Load My Weather
-    </button>
+    <AuthorizeView>
+            <Authorized>
+                <button class="btn btn-primary" @onclick="UpdateWeather">
+                    Load My Weather
+                </button>
+            </Authorized>
+     </AuthorizeView>
+   
 
     <table class="table">
         <thead>
