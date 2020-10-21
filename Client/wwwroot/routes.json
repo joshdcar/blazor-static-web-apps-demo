@@ -1,9 +1,35 @@
 {
     "routes": [
-      {
-        "route": "/*",
-        "serve": "/index.html",
-        "statusCode": 200
+        {
+            "route": "/profile",
+            "allowedRoles": [
+                "authenticated"
+            ]
+        },
+        {
+            "route": "/api/myforecast",
+            "allowedRoles": [
+                "authenticated"
+            ]
+        },
+        {
+            "route": "/*",
+            "serve": "/index.html",
+            "statusCode": 200
+        }
+    ],
+    "platformErrorOverrides": [
+        {
+          "errorType": "NotFound",
+          "serve": "/notfound"
+        },
+        {
+          "errorType": "Unauthenticated",
+          "statusCode": "302",
+          "serve": "/register"
+        }
+      ],
+      "defaultHeaders": {
+        "content-security-policy": "default-src https: 'unsafe-eval' 'unsafe-inline'; object-src 'none'"
       }
-    ]
-  }
+}

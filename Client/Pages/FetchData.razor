@@ -14,6 +14,11 @@
 }
 else
 {
+
+    <button class="btn btn-primary" @onclick="UpdateWeather">
+        Load My Weather
+    </button>
+
     <table class="table">
         <thead>
             <tr>
@@ -51,6 +56,13 @@ else
             throw(ex);
         }
         
+    }
+
+    private async Task UpdateWeather(MouseEventArgs e)
+    {
+        var baseUrl = Config["API_BASE_URL"] ?? "";   
+
+        forecasts = await Http.GetFromJsonAsync<WeatherForecast[]>($"{baseUrl}/api/myforecast");
     }
 
 }
